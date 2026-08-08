@@ -1,0 +1,19 @@
+# Raw dataset
+Home Credit Dataset/raw/
+
+# Intermediate / generated data
+Home Credit Dataset/interim/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
