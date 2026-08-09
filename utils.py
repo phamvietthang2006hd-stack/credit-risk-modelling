@@ -7,6 +7,10 @@ CONFIG_PATH = PROJECT_ROOT / "config" / "path.yaml"
 class Config:
     def __init__(self, config_file: Path = CONFIG_PATH):
         self.project_root = PROJECT_ROOT
+
+        if not config_file.exists():
+            raise FileNotFoundError(f"Không tìm thấy file config tại {config_file}")
+        
         with open(config_file, "r", encoding='utf-8') as f:
             self.data = yaml.safe_load(f)
 
@@ -15,4 +19,22 @@ class Config:
         self.train_dir = self.data_dir / self.data["dirs"]["train"]
         self.test_dir = self.data_dir / self.data["dirs"]["test"]
 
+        self._files = self.data.get("files", {})
+
+    def get_raw(self, file_key: str) -> Path:
+        filename = self._files.get(file_key, f"{file_key}.csv")
+        return self.raw_dir / filename
+
+    def get_train(self, file_key: str) -> Path:
+        filename = self._files.get(file_key, f"{file_key}.csv")
+        return self.train_dir / filename 
+
+    def get_test(self, file_key: str) -> Path:
+        filename = self._files.get(file_key, f"{file_key}.csv")
+        if file_key == "application":
+            filename = "application_train_test.csv"
+        elif not filename.endswith("_test.csv"):
+            filename = filename.replace(".csv", "_test.csv")
+
+        return self.test_dir / filename
 cfg = Config()
