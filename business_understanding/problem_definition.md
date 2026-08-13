@@ -18,6 +18,7 @@ where:
 - $Y=1$ represents the occurrence of the predefined bad-credit outcome during the performance window following $T_0$.
 - $P(Y=1 \mid X_{T_0})$ represents the applicant's estimated probability of default or other defined adverse credit event.
 
+
 The core problem is therefore a supervised binary classification problem under a temporal constraint: the model must use only information that would have been available when the credit decision was made, while the target outcome is observed only after that decision.
 
 ## 2. Decision Context
@@ -155,7 +156,7 @@ The quality of the model is evaluated not only by predictive discrimination but 
 
 The central constraint of the problem is:
 
-> **The model may only use information that would have been available at the time the credit decision was made.**
+**The model may only use information that would have been available at the time the credit decision was made.**
 
 Consequently, feature construction must respect the temporal boundary at $T_0$.
 
@@ -176,3 +177,4 @@ $$
 \text{Probability of future credit risk}
 }
 $$
+
