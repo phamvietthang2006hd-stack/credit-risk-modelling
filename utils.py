@@ -26,10 +26,14 @@ class Config:
         return self.raw_dir / filename
 
     def get_train(self, file_key: str) -> Path:
+        if file_key == "columns_description": 
+            pass
         filename = self._files.get(file_key, f"{file_key}.csv")
         return self.train_dir / filename 
 
     def get_test(self, file_key: str) -> Path:
+        if file_key == "columns_description": 
+            pass
         filename = self._files.get(file_key, f"{file_key}.csv")
         if file_key == "application":
             filename = "application_train_test.csv"
@@ -37,4 +41,5 @@ class Config:
             filename = filename.replace(".csv", "_test.csv")
 
         return self.test_dir / filename
+    
 cfg = Config()
