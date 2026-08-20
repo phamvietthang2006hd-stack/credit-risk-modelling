@@ -97,7 +97,7 @@ class DataQualityReport:
 
         for result in self.results:
             print(
-                f"[{result.status:<7}] "
+                f"[{result.status}] "
                 f"{result.check_name}: "
                 f"{result.message}"
             )

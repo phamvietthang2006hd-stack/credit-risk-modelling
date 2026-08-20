@@ -119,15 +119,3 @@ def check_dataframe_structure(df: pd.DataFrame) -> list[CheckResult]:
         )
 
     return results
-    results: list[CheckResult] = []
-    actual_columns = set(df.columns)
-    expected_columns = set(expected_schema)
-
-    missing_columns = sorted(expected_columns - actual_columns)
-
-    unexpected_columns = sorted(actual_columns - expected_columns)
-
-    if missing_columns:
-        results.append(
-            
-        )
