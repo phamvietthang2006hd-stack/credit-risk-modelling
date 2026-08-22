@@ -15,7 +15,7 @@ def missing_summary(df: pd.DataFrame) -> pd.DataFrame:
 
     return result.sort_values("missing_rate", ascending=False).reset_index(drop=True)
 
-def check_missing(df: pd.DataFrame, warning_threshold: float = 0.05, critical_threshold: float = 0.5) -> list[CheckResult]:
+def check_missing(df: pd.DataFrame, warning_threshold: float = 0.05, critical_threshold: float = 0.3) -> list[CheckResult]:
     summary = missing_summary(df)
 
     high_missing = summary[summary['missing_rate'] >= critical_threshold]
@@ -30,10 +30,7 @@ def check_missing(df: pd.DataFrame, warning_threshold: float = 0.05, critical_th
                 status="WARNING",
                 severity="HIGH",
                 message=f"{len(high_missing)} columns have missing rate >= {critical_threshold:.0%}",
-                details={
-                    "columns": high_missing["column"].tolist(),
-                    "missing_rates": dict(zip(high_missing["column"], high_missing["missing_rate"]))
-                }
+                details=dict(zip(high_missing["column"], high_missing["missing_rate"]))
             )
         )
     else:
@@ -52,7 +49,7 @@ def check_missing(df: pd.DataFrame, warning_threshold: float = 0.05, critical_th
                     status="WARNING",
                     severity="MEDIUM",
                     message=f"{len(medium_missing)} columns have missing rate between {warning_threshold:.0%} and {critical_threshold:.0%}.",
-                    details={"columns": medium_missing["column"].tolist()}
+                    details=dict(zip(medium_missing['column'], medium_missing['missing_rate']))
                 )
             )
     else:
