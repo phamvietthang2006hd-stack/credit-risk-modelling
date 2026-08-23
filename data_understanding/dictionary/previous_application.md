@@ -225,7 +225,6 @@ These columns describe operational characteristics of the previous application.
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `FLAG_LAST_APPL_PER_CONTRACT` | Flag indicating whether the application was the last application for the previous contract.                                |
 | `NFLAG_LAST_APPL_IN_DAY`      | Flag indicating whether the application was the last application submitted by the client on that day.                       |
-| `NFLAG_MICRO_CASH`            | Flag indicating whether the previous application was a Microfinance loan.                                                    |
 | `NFLAG_INSURED_ON_APPROVAL`   | Flag indicating whether the applicant requested insurance when the previous application was approved.                        |
 
 `FLAG_LAST_APPL_PER_CONTRACT` and `NFLAG_LAST_APPL_IN_DAY` are primarily related to the application process and data recording behavior.
