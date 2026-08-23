@@ -23,7 +23,7 @@ class DataQualityChecker:
         domain_rules: list[dict[str, Any]] | None = None,
         consistency_rules: list[dict[str, Any]] | None = None,
         missing_warning_threshold: float = 0.05,
-        missing_critical_threshold: float = 0.50,
+        missing_critical_threshold: float = 0.3,
     ) -> DataQualityReport:
 
         report = DataQualityReport(dataset_name=self.dataset_name)
