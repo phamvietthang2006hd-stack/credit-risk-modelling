@@ -50,6 +50,9 @@ BUREAU_DOMAIN_RULES = [
             "Mobile operator loan",
             "Mortgage",
             "Unknown type of loan",
+            'Loan for working capital replenishment',
+            'Loan for the purchase of equipment',
+            'Real estate loan'
         ],
         "allow_null": False,
     },

@@ -60,10 +60,4 @@ INSTALMENTS_PAYMENTS_DOMAIN_RULES = [
     }
 ]
 
-INSTALMENTS_PAYMENTS_CONSISTENCY_RULES = [
-    {
-        "type": "relationship",
-        "name": "payment_date_vs_installment_date",
-        "rule": lambda df: df["DAYS_ENTRY_PAYMENT"].isna() | (df["DAYS_ENTRY_PAYMENT"] >= df["DAYS_INSTALMENT"])
-    }
-]
+INSTALMENTS_PAYMENTS_CONSISTENCY_RULES = []

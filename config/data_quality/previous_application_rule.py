@@ -176,7 +176,7 @@ PREVIOUS_APPLICATION_DOMAIN_RULES = [
     {
         "type": "allowed_values",
         "column": "NAME_CONTRACT_STATUS",
-        "values": ["Approved","Cancelled", "Refused","Unused offer"],
+        "values": ["Approved","Canceled", "Refused","Unused offer"],
         "allow_null": False,
     },
 
