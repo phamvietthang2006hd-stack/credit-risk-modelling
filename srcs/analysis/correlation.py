@@ -30,21 +30,23 @@ class CorrelationAnalyzer:
         return self.pearson_matrix
 
     def phi_k_corr(self, columns: Optional[list[str]] = None) -> pd.DataFrame:
-
         if columns is None:
-            columns = self.df.select_dtypes(include=["object", "category", "bool"]).columns.tolist()
+            columns = self.df.columns.tolist()
+        else:
+            columns = columns.copy()
 
         if self.target in self.df.columns and self.target not in columns:
             columns.append(self.target)
 
-        self.phik_matrix = phik_matrix(self.df[columns], interval_cols=[])
+        num_cols = self.df[columns].select_dtypes(include=["number"]).columns.difference([self.target]).tolist()
+
+        self.phik_matrix = phik_matrix(self.df[columns],interval_cols=num_cols)
 
         return self.phik_matrix
     
     def top_target_phi_k(self, top_n: int = 10, columns: Optional[list[str]] = None) -> pd.Series:
     
-        if self.phik_matrix is None:
-            self.phi_k_corr(columns)
+        self.phik_matrix = self.phi_k_corr(columns=columns)
 
         assert self.phik_matrix is not None, "phik_matrix is not initialized"
 

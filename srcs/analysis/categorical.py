@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
 
 def categorical_data_analyzer(
@@ -14,7 +13,9 @@ def categorical_data_analyzer(
     assert column in df.columns, f"{column} is not in {dataset}"
 
     # Summary Dataframe
-    summary = df.groupby(column)[target].agg(
+    data = df.copy()
+    data[column] = data[column].fillna('NA')
+    summary = data.groupby(column)[target].agg(
         Total_count='count',
         Default_count='sum',
         Rate='mean'
